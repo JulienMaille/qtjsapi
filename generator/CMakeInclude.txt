@@ -286,10 +286,6 @@ target_sources(qtjsapi PUBLIC
     generator/cpp/qqmlcontext_wrapper.h
     generator/cpp/qqmlengine_base.h
     generator/cpp/qqmlengine_wrapper.h
-    generator/cpp/qquickview_base.h
-    generator/cpp/qquickview_wrapper.h
-    generator/cpp/qquickwidget_base.h
-    generator/cpp/qquickwidget_wrapper.h
     generator/cpp/qradialgradient_wrapper.h
     generator/cpp/qradiobutton_base.h
     generator/cpp/qradiobutton_wrapper.h
@@ -676,10 +672,6 @@ target_sources(qtjsapi PUBLIC
     generator/cpp/qqmlcontext_wrapper.cpp
     generator/cpp/qqmlengine_base.cpp
     generator/cpp/qqmlengine_wrapper.cpp
-    generator/cpp/qquickview_base.cpp
-    generator/cpp/qquickview_wrapper.cpp
-    generator/cpp/qquickwidget_base.cpp
-    generator/cpp/qquickwidget_wrapper.cpp
     generator/cpp/qradiobutton_base.cpp
     generator/cpp/qradiobutton_wrapper.cpp
     generator/cpp/qrect_base.cpp

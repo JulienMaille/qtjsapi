@@ -9,10 +9,17 @@
       #include <QtGui>
       #include <QtWidgets>
       #include <QtXml>
+      #include <QtQml>
+      #ifdef QT_QUICK_LIB
       #include <QtQuick>
+      #endif
+      #ifdef QT_QUICKWIDGETS_LIB
       #include <QtQuickWidgets>
+      #endif
       #include <QtPrintSupport>
+      #ifdef QT_CORE5COMPAT_LIB
       #include <QtCore5Compat>
+      #endif
       #include <QtSvg>
       #include <QtUiTools>
 
@@ -1210,18 +1217,6 @@
         class RJSBasecaster_QQmlEngine {
         public:
           virtual QQmlEngine* castToBase(int t, void* vp) = 0;
-        };
-        
-        // Base class for basecasters that can cast void* to base class QQuickView:
-        class RJSBasecaster_QQuickView {
-        public:
-          virtual QQuickView* castToBase(int t, void* vp) = 0;
-        };
-        
-        // Base class for basecasters that can cast void* to base class QQuickWidget:
-        class RJSBasecaster_QQuickWidget {
-        public:
-          virtual QQuickWidget* castToBase(int t, void* vp) = 0;
         };
         
         // Base class for basecasters that can cast void* to base class QRadioButton:
@@ -2618,22 +2613,6 @@
       static QJSValue cpp2js_QProgressBar_Direction(RJSApi& handler, QProgressBar::Direction v);
       static QProgressBar::Direction js2cpp_QProgressBar_Direction(RJSApi& handler, const QJSValue& v);
       static bool is_QProgressBar_Direction(RJSApi& handler, const QJSValue& v, bool acceptUndefined = false);
-    
-      static QJSValue cpp2js_QQuickView_ResizeMode(RJSApi& handler, QQuickView::ResizeMode v);
-      static QQuickView::ResizeMode js2cpp_QQuickView_ResizeMode(RJSApi& handler, const QJSValue& v);
-      static bool is_QQuickView_ResizeMode(RJSApi& handler, const QJSValue& v, bool acceptUndefined = false);
-    
-      static QJSValue cpp2js_QQuickView_Status(RJSApi& handler, QQuickView::Status v);
-      static QQuickView::Status js2cpp_QQuickView_Status(RJSApi& handler, const QJSValue& v);
-      static bool is_QQuickView_Status(RJSApi& handler, const QJSValue& v, bool acceptUndefined = false);
-    
-      static QJSValue cpp2js_QQuickWidget_ResizeMode(RJSApi& handler, QQuickWidget::ResizeMode v);
-      static QQuickWidget::ResizeMode js2cpp_QQuickWidget_ResizeMode(RJSApi& handler, const QJSValue& v);
-      static bool is_QQuickWidget_ResizeMode(RJSApi& handler, const QJSValue& v, bool acceptUndefined = false);
-    
-      static QJSValue cpp2js_QQuickWidget_Status(RJSApi& handler, QQuickWidget::Status v);
-      static QQuickWidget::Status js2cpp_QQuickWidget_Status(RJSApi& handler, const QJSValue& v);
-      static bool is_QQuickWidget_Status(RJSApi& handler, const QJSValue& v, bool acceptUndefined = false);
     
       static QJSValue cpp2js_QRegion_RegionType(RJSApi& handler, QRegion::RegionType v);
       static QRegion::RegionType js2cpp_QRegion_RegionType(RJSApi& handler, const QJSValue& v);
@@ -4262,16 +4241,6 @@
       static QJSValue cpp2js_QPushButton(RJSApi& handler, const QPushButton* v);
       static QPushButton* js2cpp_QPushButton_ptr(RJSApi& handler, const QJSValue& v);
       static bool is_QPushButton_ptr(RJSApi& handler, const QJSValue& v, bool acceptUndefined = false);
-    
-      static QJSValue cpp2js_QQuickView(RJSApi& handler, QQuickView* v);
-      static QJSValue cpp2js_QQuickView(RJSApi& handler, const QQuickView* v);
-      static QQuickView* js2cpp_QQuickView_ptr(RJSApi& handler, const QJSValue& v);
-      static bool is_QQuickView_ptr(RJSApi& handler, const QJSValue& v, bool acceptUndefined = false);
-    
-      static QJSValue cpp2js_QQuickWidget(RJSApi& handler, QQuickWidget* v);
-      static QJSValue cpp2js_QQuickWidget(RJSApi& handler, const QQuickWidget* v);
-      static QQuickWidget* js2cpp_QQuickWidget_ptr(RJSApi& handler, const QJSValue& v);
-      static bool is_QQuickWidget_ptr(RJSApi& handler, const QJSValue& v, bool acceptUndefined = false);
     
       static QJSValue cpp2js_QRadioButton(RJSApi& handler, QRadioButton* v);
       static QJSValue cpp2js_QRadioButton(RJSApi& handler, const QRadioButton* v);

@@ -23,7 +23,6 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/../../qcad)
     endif()
 else()
     link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../out)
-    link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../out)
 endif()
 
 add_executable(qtjsapiconsole
