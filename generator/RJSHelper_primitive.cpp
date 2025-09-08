@@ -355,12 +355,6 @@
         
           #include "qqmlcontext_wrapper.h"
         
-          #include "qquickview_wrapper.h"
-        
-          #include "qwindow_wrapper.h"
-        
-          #include "qquickwidget_wrapper.h"
-        
           #include "qradiobutton_wrapper.h"
         
           #include "qrect_wrapper.h"
@@ -504,6 +498,8 @@
           #include "qvariant_wrapper.h"
         
           #include "qwidgetaction_wrapper.h"
+        
+          #include "qwindow_wrapper.h"
         
           #include "qsurface_wrapper.h"
         
@@ -4823,94 +4819,6 @@
       }
 
       bool RJSHelper::is_QProgressBar_Direction(RJSApi& handler, const QJSValue& v, bool acceptUndefined) {
-        if (v.isUndefined() || v.isNull()) {
-          return acceptUndefined;
-        }
-        return v.isNumber();
-      }
-    
-      QJSValue RJSHelper::cpp2js_QQuickView_ResizeMode(RJSApi& handler, QQuickView::ResizeMode v) {
-        return QJSValue(v);
-      }
-
-      QQuickView::ResizeMode RJSHelper::js2cpp_QQuickView_ResizeMode(RJSApi& handler, const QJSValue& v) {
-        if (!v.isNumber()) {
-          return 
-            (QQuickView::ResizeMode)0
-          ;
-        }
-        return 
-        (QQuickView::ResizeMode)
-      v.toInt();
-      }
-
-      bool RJSHelper::is_QQuickView_ResizeMode(RJSApi& handler, const QJSValue& v, bool acceptUndefined) {
-        if (v.isUndefined() || v.isNull()) {
-          return acceptUndefined;
-        }
-        return v.isNumber();
-      }
-    
-      QJSValue RJSHelper::cpp2js_QQuickView_Status(RJSApi& handler, QQuickView::Status v) {
-        return QJSValue(v);
-      }
-
-      QQuickView::Status RJSHelper::js2cpp_QQuickView_Status(RJSApi& handler, const QJSValue& v) {
-        if (!v.isNumber()) {
-          return 
-            (QQuickView::Status)0
-          ;
-        }
-        return 
-        (QQuickView::Status)
-      v.toInt();
-      }
-
-      bool RJSHelper::is_QQuickView_Status(RJSApi& handler, const QJSValue& v, bool acceptUndefined) {
-        if (v.isUndefined() || v.isNull()) {
-          return acceptUndefined;
-        }
-        return v.isNumber();
-      }
-    
-      QJSValue RJSHelper::cpp2js_QQuickWidget_ResizeMode(RJSApi& handler, QQuickWidget::ResizeMode v) {
-        return QJSValue(v);
-      }
-
-      QQuickWidget::ResizeMode RJSHelper::js2cpp_QQuickWidget_ResizeMode(RJSApi& handler, const QJSValue& v) {
-        if (!v.isNumber()) {
-          return 
-            (QQuickWidget::ResizeMode)0
-          ;
-        }
-        return 
-        (QQuickWidget::ResizeMode)
-      v.toInt();
-      }
-
-      bool RJSHelper::is_QQuickWidget_ResizeMode(RJSApi& handler, const QJSValue& v, bool acceptUndefined) {
-        if (v.isUndefined() || v.isNull()) {
-          return acceptUndefined;
-        }
-        return v.isNumber();
-      }
-    
-      QJSValue RJSHelper::cpp2js_QQuickWidget_Status(RJSApi& handler, QQuickWidget::Status v) {
-        return QJSValue(v);
-      }
-
-      QQuickWidget::Status RJSHelper::js2cpp_QQuickWidget_Status(RJSApi& handler, const QJSValue& v) {
-        if (!v.isNumber()) {
-          return 
-            (QQuickWidget::Status)0
-          ;
-        }
-        return 
-        (QQuickWidget::Status)
-      v.toInt();
-      }
-
-      bool RJSHelper::is_QQuickWidget_Status(RJSApi& handler, const QJSValue& v, bool acceptUndefined) {
         if (v.isUndefined() || v.isNull()) {
           return acceptUndefined;
         }

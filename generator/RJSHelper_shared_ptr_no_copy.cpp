@@ -355,12 +355,6 @@
         
           #include "qqmlcontext_wrapper.h"
         
-          #include "qquickview_wrapper.h"
-        
-          #include "qwindow_wrapper.h"
-        
-          #include "qquickwidget_wrapper.h"
-        
           #include "qradiobutton_wrapper.h"
         
           #include "qrect_wrapper.h"
@@ -504,6 +498,8 @@
           #include "qvariant_wrapper.h"
         
           #include "qwidgetaction_wrapper.h"
+        
+          #include "qwindow_wrapper.h"
         
           #include "qsurface_wrapper.h"
         

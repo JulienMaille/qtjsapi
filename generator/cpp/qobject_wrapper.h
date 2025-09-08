@@ -436,14 +436,6 @@
                 return (QObject*)(QQmlEngine*)vp;
               }
               
-              if (t==RJSType_QQuickView::getIdStatic()) {
-                return (QObject*)(QQuickView*)vp;
-              }
-              
-              if (t==RJSType_QQuickWidget::getIdStatic()) {
-                return (QObject*)(QQuickWidget*)vp;
-              }
-              
               if (t==RJSType_QRadioButton::getIdStatic()) {
                 return (QObject*)(QRadioButton*)vp;
               }

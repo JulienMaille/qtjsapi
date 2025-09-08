@@ -845,10 +845,6 @@
                 return (QWidget*)(QPushButton*)vp;
               }
               
-              if (t==RJSType_QQuickWidget::getIdStatic()) {
-                return (QWidget*)(QQuickWidget*)vp;
-              }
-              
               if (t==RJSType_QRadioButton::getIdStatic()) {
                 return (QWidget*)(QRadioButton*)vp;
               }
