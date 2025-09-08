@@ -76,10 +76,17 @@
       #include &lt;QtGui&gt;
       #include &lt;QtWidgets&gt;
       #include &lt;QtXml&gt;
+      #include &lt;QtQml&gt;
+      #ifdef QT_QUICK_LIB
       #include &lt;QtQuick&gt;
+      #endif
+      #ifdef QT_QUICKWIDGETS_LIB
       #include &lt;QtQuickWidgets&gt;
+      #endif
       #include &lt;QtPrintSupport&gt;
+      #ifdef QT_CORE5COMPAT_LIB
       #include &lt;QtCore5Compat&gt;
+      #endif
       #include &lt;QtSvg&gt;
       #include &lt;QtUiTools&gt;
 
