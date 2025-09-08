@@ -209,10 +209,6 @@
     <type>QProcess::ProcessState</type>
     <type>QProcessEnvironment::Initialization</type>
     <type>QProgressBar::Direction</type>
-    <type>QQuickView::ResizeMode</type>
-    <type>QQuickView::Status</type>
-    <type>QQuickWidget::ResizeMode</type>
-    <type>QQuickWidget::Status</type>
     <type>QRegion::RegionType</type>
     <type>QRegularExpression::MatchOptions</type>
     <type>QRegularExpression::MatchType</type>
@@ -590,8 +586,6 @@
     <type>QProgressBar</type>
     <type>QProgressDialog</type>
     <type>QPushButton</type>
-    <type>QQuickView</type>
-    <type>QQuickWidget</type>
     <type>QRadioButton</type>
     <type>QRegularExpressionValidator</type>
     <type min-qt-version="0x060700">QRhiWidget</type>

@@ -59,16 +59,19 @@ echo "xml2addcount..."
 sh $DIR/xml2addcount.sh
 if [ $? -ne 0 ]; then exit $?; fi
 
+echo "xml2cpp..."
 sh $DIR/xml2cpp.sh $MODULE
 if [ $? -ne 0 ]; then exit $?; fi
 
+echo "xml2cppbase..."
 sh $DIR/xml2cppbase.sh $MODULE
 if [ $? -ne 0 ]; then exit $?; fi
 
+echo "xml2js..."
 sh $DIR/xml2js.sh $MODULE
 if [ $? -ne 0 ]; then exit $?; fi
 
-find cpp -size 0 | xargs rm
+find cpp -type f -size 0 | xargs rm -f
 
 wait
 
@@ -99,10 +102,12 @@ else
     rm new_header_cpp.h
 fi
 
+echo "generate_CMakeInclude..."
 sh $DIR/generate_CMakeInclude.sh $MODULE
 
 wait
 cd ..
+echo "update_qrc..."
 sh update_qrc.sh $MODULE
 
 echo "done"

@@ -130,7 +130,6 @@
 #include "generator/cpp/qabstractscrollarea_wrapper.h"
 #include "generator/cpp/qxmlstream_wrapper.h"
 #include "generator/cpp/qurlquery_wrapper.h"
-#include "generator/cpp/qvariant_wrapper.h"
 #include "generator/cpp/qprogressbar_wrapper.h"
 #include "generator/cpp/qregularexpression_wrapper.h"
 #include "generator/cpp/qstackedwidget_wrapper.h"
@@ -154,14 +153,17 @@
 #include "generator/cpp/qtooltip_wrapper.h"
 #include "generator/cpp/qdoublevalidator_wrapper.h"
 #include "generator/cpp/qsortfilterproxymodel_wrapper.h"
-#include "generator/cpp/qitemdelegate_wrapper.h"
 #include "generator/cpp/qeasingcurve_wrapper.h"
 #include "generator/cpp/qsvgrenderer_wrapper.h"
 #include "generator/cpp/qqmlapplicationengine_wrapper.h"
 #include "generator/cpp/qqmlcontext_wrapper.h"
 #include "generator/cpp/qqmlengine_wrapper.h"
+#ifdef QT_QUICK_LIB
 #include "generator/cpp/qquickview_wrapper.h"
+#endif
+#ifdef QT_QUICKWIDGETS_LIB
 #include "generator/cpp/qquickwidget_wrapper.h"
+#endif
 #include "generator/cpp/qgraphicseffect_wrapper.h"
 #include "generator/cpp/qpaintdevice_wrapper.h"
 #include "generator/cpp/qjsengine_wrapper.h"
@@ -463,9 +465,13 @@ void RJSApi::init() {
     QQmlContext_Wrapper::init(*this);
     QQmlEngine_Wrapper::init(*this);
     QQmlApplicationEngine_Wrapper::init(*this);
-    QQuickWidget_Wrapper::init(*this);
-    QQuickView_Wrapper::init(*this);
 
+#ifdef QT_QUICKWIDGETS_LIB
+    QQuickWidget_Wrapper::init(*this);
+#endif
+#ifdef QT_QUICK_LIB
+    QQuickView_Wrapper::init(*this);
+#endif
 
     // set engine property to QQmlApplicationEngine if appropriate
     // to support mixing of QML with QtJSAPI
