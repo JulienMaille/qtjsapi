@@ -586,6 +586,8 @@
     <type>QProgressBar</type>
     <type>QProgressDialog</type>
     <type>QPushButton</type>
+    <type ifdef="QT_QUICK_LIB">QQuickView</type>
+    <type ifdef="QT_QUICKWIDGETS_LIB">QQuickWidget</type>
     <type>QRadioButton</type>
     <type>QRegularExpressionValidator</type>
     <type min-qt-version="0x060700">QRhiWidget</type>
