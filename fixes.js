@@ -32,16 +32,6 @@ QByteArray.prototype.appendByte = function(c) {
     return this.append(c);
 };
 
-function parseXml(fileName, handler) {
-    var fi = new QFileInfo(fileName);
-    var file = new QFile(fi.absoluteFilePath());
-    var xmlReader = new QXmlSimpleReader();
-    var source = new QXmlInputSource(file);
-    xmlReader.setContentHandler(handler);
-    var ret = xmlReader.parse(source, false);
-    file.close();
-}
-
 function inspect(obj, indent) {
     if (indent==undefined) {
         indent = 0;
