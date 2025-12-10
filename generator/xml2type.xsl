@@ -43,6 +43,9 @@
 <xsl:template match="*" mode="enum" />
 <xsl:template match="*" mode="class" />
 
+<xsl:template match="type" mode="ifdef">
+<xsl:if test="@ifdef">#ifdef <xsl:value-of select="@ifdef"/></xsl:if>
+</xsl:template>
 <xsl:template match="manual|shared_ptr|shared_ptr_no_copy|wrapped_ptr|wrapped_qobject_ptr|dummy|dummy_ptr|wrapped" mode="class">
   <!--
   <xsl:for-each select="type[not(.=preceding::*)]">
@@ -52,6 +55,7 @@
   -->
 
   <xsl:for-each select="type[not(.=preceding::*)]">
+    <xsl:apply-templates select="." mode="ifdef" />
     <xsl:if test="$mode='h'">
       class <xsl:value-of select="$class_export"/> RJSType_<xsl:value-of select="text()" /> : public RJSTypeEnum {
           Q_OBJECT
@@ -122,6 +126,8 @@
             return derrivedTypes.contains(otherType);
         }
       </xsl:if>
+    </xsl:if>
+    <xsl:if test="@ifdef">#endif
     </xsl:if>
   </xsl:for-each>
 
