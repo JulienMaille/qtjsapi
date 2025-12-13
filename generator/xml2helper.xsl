@@ -76,8 +76,12 @@
       #include &lt;QtGui&gt;
       #include &lt;QtWidgets&gt;
       #include &lt;QtXml&gt;
+      #ifdef QT_QUICK_LIB
       #include &lt;QtQuick&gt;
+      #endif
+      #ifdef QT_QUICKWIDGETS_LIB
       #include &lt;QtQuickWidgets&gt;
+      #endif
       #include &lt;QtPrintSupport&gt;
       #include &lt;QtCore5Compat&gt;
       #include &lt;QtSvg&gt;
@@ -92,11 +96,17 @@
         <xsl:if test="@min-qt-version">
           #if QT_VERSION &gt;= <xsl:value-of select="@min-qt-version"/>
         </xsl:if>
+        <xsl:if test="@ifdef">
+          #ifdef <xsl:value-of select="@ifdef"/>
+        </xsl:if>
         // Base class for downcasters that can downcast <xsl:value-of select="@name" /> to specific types:
         class RJSDowncaster_<xsl:value-of select="@name" /> {
         public:
           virtual QJSValue downcast(RJSApi&amp; handler, <xsl:value-of select="@name" />* o) = 0;
         };
+        <xsl:if test="@ifdef">
+          #endif
+        </xsl:if>
         <xsl:if test="@min-qt-version">
           #endif
         </xsl:if>
@@ -106,11 +116,17 @@
         <xsl:if test="@min-qt-version">
           #if QT_VERSION &gt;= <xsl:value-of select="@min-qt-version"/>
         </xsl:if>
+        <xsl:if test="@ifdef">
+          #ifdef <xsl:value-of select="@ifdef"/>
+        </xsl:if>
         // Base class for basecasters that can cast void* to base class <xsl:value-of select="@name" />:
         class RJSBasecaster_<xsl:value-of select="@name" /> {
         public:
           virtual <xsl:value-of select="@name" />* castToBase(int t, void* vp) = 0;
         };
+        <xsl:if test="@ifdef">
+          #endif
+        </xsl:if>
         <xsl:if test="@min-qt-version">
           #endif
         </xsl:if>
@@ -132,6 +148,9 @@
       <xsl:if test="$module!=''">
         <xsl:for-each select="document('tmp/xmlall.xml')/qsrc:unit/qsrc:class">
           // implementation of base casters that cast <xsl:value-of select="@name" /> to base classes:
+          <xsl:if test="@ifdef">
+            #ifdef <xsl:value-of select="@ifdef"/>
+          </xsl:if>
           <xsl:variable name="basecast-from">
             <xsl:value-of select="@name" />
           </xsl:variable>
@@ -155,6 +174,9 @@
               }
             };
           </xsl:for-each>
+          <xsl:if test="@ifdef">
+            #endif
+          </xsl:if>
         </xsl:for-each>
       </xsl:if>
 
@@ -253,6 +275,9 @@
           <xsl:if test="@min-qt-version">
             #if QT_VERSION &gt;= <xsl:value-of select="@min-qt-version"/>
           </xsl:if>
+          <xsl:if test="@ifdef">
+            #ifdef <xsl:value-of select="@ifdef"/>
+          </xsl:if>
 
           // allow downcasting for type <xsl:value-of select="@name" />:
           private:
@@ -263,6 +288,9 @@
               downcasters_<xsl:value-of select="@name"/>.append(dc);
             }
 
+          <xsl:if test="@ifdef">
+            #endif
+          </xsl:if>
           <xsl:if test="@min-qt-version">
             #endif
           </xsl:if>
@@ -311,7 +339,14 @@
         <!-- Only process the first occurrence of each unique name -->
         <xsl:if test="generate-id() = generate-id(key('includes-by-name', @name)[1])">
           <xsl:variable name="include-name" select="qc:lowercase(@name)" />
+          <xsl:variable name="ifdef" select="key('includes-by-name', @name)[self::qsrc:class]/@ifdef" />
+          <xsl:if test="$ifdef">
+          #ifdef <xsl:value-of select="$ifdef"/>
+          </xsl:if>
           #include "<xsl:value-of select="$include-name"/>_wrapper.h"
+          <xsl:if test="$ifdef">
+          #endif
+          </xsl:if>
         </xsl:if>
       </xsl:for-each>
 
@@ -379,6 +414,9 @@
         // downcaster classes:
         <!-- get list of Qt classes that can be downcast from qtjsapi, e.g. QWidget -->
         <xsl:for-each select="document('../../qtjsapi/generator/tmp/xmlall.xml')/qsrc:unit/qsrc:class[@downcast='true']">
+          <xsl:if test="@ifdef">
+            #ifdef <xsl:value-of select="@ifdef"/>
+          </xsl:if>
           <xsl:variable name="downcast-from">
             <xsl:value-of select="@name"/>
           </xsl:variable>
@@ -412,6 +450,9 @@
             };
 
           </xsl:for-each>
+          <xsl:if test="@ifdef">
+            #endif
+          </xsl:if>
         </xsl:for-each>
       </xsl:if>
 
@@ -419,6 +460,9 @@
         void <xsl:value-of select="$rjshelper_class"/>::registerDowncasters() {
 
           <xsl:for-each select="document('../../qtjsapi/generator/tmp/xmlall.xml')/qsrc:unit/qsrc:class[@downcast='true']">
+            <xsl:if test="@ifdef">
+              #ifdef <xsl:value-of select="@ifdef"/>
+            </xsl:if>
             <xsl:variable name="downcast-from">
               <xsl:value-of select="@name"/>
             </xsl:variable>
@@ -431,11 +475,17 @@
               // downcasters from <xsl:value-of select="$downcast-from"/> to <xsl:value-of select="$downcast-to"/>
               RJSHelper::registerDowncaster_<xsl:value-of select="$downcast-from"/>(new RJSDowncaster_<xsl:value-of select="$downcast-from"/>_<xsl:value-of select="$downcast-to"/>());
             </xsl:for-each>
+            <xsl:if test="@ifdef">
+              #endif
+            </xsl:if>
           </xsl:for-each>
         }
 
         void <xsl:value-of select="$rjshelper_class"/>::registerBasecasters() {
           <xsl:for-each select="document('tmp/xmlall.xml')/qsrc:unit/qsrc:class">
+            <xsl:if test="@ifdef">
+              #ifdef <xsl:value-of select="@ifdef"/>
+            </xsl:if>
             // registration of base casters that cast <xsl:value-of select="@name" /> to base classes:
             <xsl:variable name="basecast-from">
               <xsl:value-of select="@name" />
@@ -450,6 +500,9 @@
               // registration of base casters that casts <xsl:value-of select="$basecast-from" /> to <xsl:value-of select="$basecast-to" />:
               <xsl:value-of select="$basecast-to"/>_Wrapper::registerBasecaster_<xsl:value-of select="$basecast-to" />(new RJSBasecaster_<xsl:value-of select="$basecast-from" />_<xsl:value-of select="$basecast-to" />());
             </xsl:for-each>
+            <xsl:if test="@ifdef">
+              #endif
+            </xsl:if>
           </xsl:for-each>
         }
 

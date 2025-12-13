@@ -87,7 +87,14 @@
   <xsl:apply-templates />
 
   <xsl:if test="$mode='cpp'">
+    <xsl:variable name="ifdef" select="qsrc:unit/qsrc:class[1]/@ifdef"/>
+    <xsl:if test="$ifdef">
+    #ifdef <xsl:value-of select="$ifdef"/>
+    </xsl:if>
     #include "moc_<xsl:value-of select="qc:lowercase(qc:replace(/qsrc:unit/@filename, '.h', '_wrapper.cpp'))" />"
+    <xsl:if test="$ifdef">
+    #endif
+    </xsl:if>
   </xsl:if>
 
   <xsl:if test="$mode='h'">
@@ -106,6 +113,10 @@
 
 <xsl:template match="qsrc:class_decl">
   <xsl:if test="$mode='h'">
+    <xsl:variable name="ifdef" select="../qsrc:class[@name=current()/@name]/@ifdef"/>
+    <xsl:if test="$ifdef">
+      #ifdef <xsl:value-of select="$ifdef"/>
+    </xsl:if>
     <xsl:choose>
       <xsl:when test="starts-with(@name, 'Q')">
         #include &lt;<xsl:value-of select="@name" />&gt;
@@ -114,6 +125,9 @@
         #include "<xsl:value-of select="@name" />.h"
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:if test="$ifdef">
+      #endif
+    </xsl:if>
   </xsl:if>
 </xsl:template>
 
@@ -131,6 +145,9 @@
     </xsl:choose>
   </xsl:variable>
   -->
+  <xsl:if test="@ifdef">
+    #ifdef <xsl:value-of select="@ifdef"/>
+  </xsl:if>
   <xsl:if test="@min-qt-version">
     // requires minimum Qt version:
     #include &lt;QtGlobal&gt;
@@ -1034,6 +1051,9 @@
     #endif
   </xsl:if>
 
+  <xsl:if test="@ifdef">
+    #endif
+  </xsl:if>
 </xsl:template>
 
 

@@ -124,6 +124,9 @@
     </xsl:choose>
   </xsl:variable>
   -->
+  <xsl:if test="@ifdef">
+    #ifdef <xsl:value-of select="@ifdef"/>
+  </xsl:if>
   <xsl:if test="@min-qt-version">
     #if QT_VERSION &gt;= <xsl:value-of select="@min-qt-version"/>
   </xsl:if>
@@ -277,6 +280,9 @@
     #endif
   </xsl:if>
 
+  <xsl:if test="@ifdef">
+    #endif
+  </xsl:if>
 </xsl:template>
 
 
